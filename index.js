@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/api/v1/libros", librosRouter);
 app.use("/api/v1/users", usersRouter)
 
-app.use("/ping", (rez, res, next)=> {
+app.use("/ping", (req, res, next)=> {
     return res.status(200).json("pong");
 });
 

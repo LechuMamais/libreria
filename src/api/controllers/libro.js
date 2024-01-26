@@ -21,7 +21,7 @@ const getLibroById = async (req, res, next) => {
 
 const postLibro = async (req, res, next) => {
     try{
-        const newLibro = await new Libro(req.body);
+        const newLibro = new Libro(req.body);
         const libro = await newLibro.save();
         return res.status(201).json(libro);
 

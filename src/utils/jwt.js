@@ -19,7 +19,7 @@ const generarLlave = (id)=>{
 // Si no da error, ya es que el token es correcto.
 //                      llave
 const verificarLlave = (token)=>{
-    return jwt.verify({token}, process.env.SECRET_KEY)
+    return jwt.verify(token, process.env.SECRET_KEY)
 }
 
 

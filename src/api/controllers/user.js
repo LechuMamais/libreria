@@ -67,15 +67,13 @@ const login = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try{
-
         const {id} = req.params;
-        console.log(req.user._id.toString());
 
         if(req.user._id.toString() != id){
             return res.status(400).json("No puedes modificar un usuario que no seas tu mismo");
         } 
 
-        const newUser = await new User(req.body);
+        const newUser = new User(req.body);
         newUser._id = id;
         // Para que al modificar algun dato del usuario no se pierda su array de libros favoritos, vamos a defirle que su
         // array de favoritos sea el del anterior mas los nuevos.
@@ -88,7 +86,6 @@ const updateUser = async (req, res, next) => {
 
 
     }catch(err){
-        
         return res.status(400).json("No capo, no estas autorizado!!",{message: err.message});
     }
 }

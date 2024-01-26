@@ -3,8 +3,8 @@ const { getUsers, getUserById, register, updateUser, login } = require("../contr
 
 const usersRouter = require("express").Router();
 
-usersRouter.get("/", getUsers);
 usersRouter.get("/:id", getUserById);
+usersRouter.get("/", getUsers);
 usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 usersRouter.put("/:id", [isAuth] , updateUser );
