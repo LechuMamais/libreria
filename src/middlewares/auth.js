@@ -10,21 +10,20 @@ const isAuth = async (req,res,next) => {
         const token = req.headers.authorization.split(" ")[1];
         
         // intentar abrir la puerta
-
         const parsedToken = verificarLlave(token);
-        // ya abrió la puerta, devuelve un objeto con el id del usuario que creo la llave, el token, cuando fue creada y cuando expira.
         const {id} = parsedToken;
+        // ya abrió la puerta, devuelve un objeto con el id del usuario que creo la llave, el token, cuando fue creada y cuando expira.
+        // Ahora ya tenemos el id
         var user = await User.findById(id); // AWAIT!!! Esto me dio varios problemas, pero finalmente funciona bien.
+        // Si encuentra un usuario con ese id, es que existe y está logueado.
     
-        user.password = null;// Solo para que no se pueda ver! No es que se borre ni desaparezca.
+        user.password = null;// Solo para que no se pueda ver (aunque esté encriptada). No es que se borre ni desaparezca.
         req.user = user; // Para saber qué usuario ha realizado qué peticion
-
         console.log("Autenticación correcta");
         next(); // Que siga con el siguiente middleware(si lo hay) y sino al return de la ruta.
 
     }catch(err){
         return res.status(400).json({message: err.message});
     }
-
 }
 module.exports = {isAuth}

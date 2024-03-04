@@ -47,7 +47,7 @@ const deleteLibro = async (req, res, next) => {
         const {id} = req.params;
         const libro = await Libro.findByIdAndDelete(id);
         return res.status(200).json({
-            mensaje: "Ha sido eliminado con éxito el libro",
+            mensaje: "El libro ha sido eliminado con éxito",
             libroEliminado: libro
         });
     }catch(err){
